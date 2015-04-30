@@ -29,10 +29,12 @@ RUN npm install -g yo generator-hubot
 RUN adduser yeoman; \ 
     echo "yeoman ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 ENV HOME /home/yeoman
-USER yeoman
 
 # Create new hubot
 RUN mkdir /opt/hubot && chmod  777 /opt/hubot
+
+USER yeoman
+
 WORKDIR /opt/hubot
 RUN yo hubot --owner="Brandon <bwulf@labattfood.com>" --name=$HUBOT_NAME --description="opsguy proxy" --adapter=flowdock --defaults
 
