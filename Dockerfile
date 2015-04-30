@@ -24,7 +24,7 @@ RUN pip install --no-deps --ignore-installed --pre supervisor
 
 #RUN npm config set proxy http://inetprox:8080
 #RUN npm config set https-proxy http://inetprox:8080
-RUN npm install -g yo generator-hubot
+RUN npm install -g coffee-script yo generator-hubot
 
 RUN adduser yeoman; \ 
     echo "yeoman ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
