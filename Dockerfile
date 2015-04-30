@@ -32,7 +32,7 @@ ENV HOME /home/yeoman
 USER yeoman
 
 # Create new hubot
-RUN mkdir /opt/hubot
+RUN mkdir /opt/hubot && chmod  777 /opt/hubot
 WORKDIR /opt/hubot
 RUN yo hubot --owner="Brandon <bwulf@labattfood.com>" --name=$HUBOT_NAME --description="opsguy proxy" --adapter=flowdock --defaults
 
