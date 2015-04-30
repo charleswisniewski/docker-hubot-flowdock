@@ -1,5 +1,5 @@
 FROM centos:latest
-MAINTAINER Jim Davies
+MAINTAINER Brandon Wulf
 
 ENV HUBOT_PORT 8080
 ENV HUBOT_ADAPTER flowdock
@@ -26,11 +26,17 @@ RUN pip install --no-deps --ignore-installed --pre supervisor
 #RUN npm config set https-proxy http://inetprox:8080
 RUN npm install -g yo generator-hubot
 
-# Create new hubot
+RUN adduser yeoman; \ 
+    echo "yeoman ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+ENV HOME /home/yeoman
+USER yeoman
 
+# Create new hubot
 RUN mkdir /opt/hubot
 WORKDIR /opt/hubot
-RUN XDG_CONFIG_HOME=/tmp/.config yo hubot --owner="Brandon <bwulf@labattfood.com>" --name=$HUBOT_NAME --description="opsguy proxy" --adapter=flowdock --defaults
+RUN yo hubot --owner="Brandon <bwulf@labattfood.com>" --name=$HUBOT_NAME --description="opsguy proxy" --adapter=flowdock --defaults
+
+USER root
 
 #RUN hubot --create /opt/hubot
 WORKDIR /opt/hubot
