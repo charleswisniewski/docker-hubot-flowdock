@@ -1,12 +1,11 @@
 docker-hubot-flowdock
 =====================
 
-### Example build and deployment (using boot2docker)
+### Example build and deployment
 
+git clone this repository
 ```
-boot2docker init && boot2docker up && boot2docker ssh
-git clone https://github.com/mrwulf/docker-hubot-flowdock.git
 cd docker-hubot-flowdock/
-git pull && docker build --tag=hubot --rm=true .
-docker run -d --name=hubot hubot:latest
+docker build --tag=hubot-fd
+docker run -d -e "HUBOT_PORT=8080" -e "HUBOT_ADAPTER=flowdock" -e "HUBOT_NAME=benbot" -e "NAME=benbot" -e "HUBOT_FLOWDOCK_API_TOKEN=TOKEN" -e "PORT=8080" -e "HUBOT_FLOWDOCK_ALLOW_ANONYMOUS_COMMANDS=1" --name=benbot hubot-fd
 ```
